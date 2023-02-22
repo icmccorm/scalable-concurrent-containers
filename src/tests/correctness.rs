@@ -73,6 +73,7 @@ mod hashmap_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn insert_drop() {
@@ -93,6 +94,7 @@ mod hashmap_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn clear() {
@@ -116,6 +118,7 @@ mod hashmap_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn clone() {
@@ -140,6 +143,7 @@ mod hashmap_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn compare() {
         let hashmap1: HashMap<String, usize> = HashMap::new();
@@ -162,6 +166,7 @@ mod hashmap_test {
         assert_ne!(hashmap1, hashmap2);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn local_ref() {
         struct L<'a>(&'a AtomicUsize);
@@ -197,6 +202,7 @@ mod hashmap_test {
         assert_eq!(cnt.load(Relaxed), 0);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn integer_key() {
@@ -293,6 +299,7 @@ mod hashmap_test {
         assert_eq!(hashmap.len(), 0);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 8)]
     #[cfg_attr(miri, ignore)]
     async fn retain_for_each() {
@@ -340,6 +347,7 @@ mod hashmap_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn string_key() {
         let hashmap1: HashMap<String, u32> = HashMap::default();
@@ -379,6 +387,7 @@ mod hashmap_test {
         assert_eq!(hashmap2.len(), 0);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn accessor() {
         let data_size = 4096;
@@ -439,6 +448,7 @@ mod hashmap_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 4)]
     #[cfg_attr(miri, ignore)]
     async fn read() {
@@ -478,6 +488,7 @@ mod hashmap_test {
     }
 
     proptest! {
+        #[cfg_attr(miri, ignore)]
         #[test]
         fn insert(key in 0_usize..16) {
             let range = 4096;
@@ -570,6 +581,7 @@ mod hashindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn compare() {
         let hashindex1: HashIndex<String, usize> = HashIndex::new();
@@ -592,6 +604,7 @@ mod hashindex_test {
         assert_ne!(hashindex1, hashindex2);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn clear() {
@@ -616,6 +629,7 @@ mod hashindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn clone() {
@@ -640,6 +654,7 @@ mod hashindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn string_key() {
         let hashindex1: HashIndex<String, u32> = HashIndex::default();
@@ -673,6 +688,7 @@ mod hashindex_test {
         assert_eq!(hashindex2.len(), 0);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 4)]
     #[cfg_attr(miri, ignore)]
     async fn read() {
@@ -711,6 +727,7 @@ mod hashindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 4)]
     #[cfg_attr(miri, ignore)]
     async fn rebuild() {
@@ -747,6 +764,7 @@ mod hashindex_test {
         assert_eq!(hashindex.len(), num_tasks * workload_size);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn visitor() {
         let data_size = 4096;
@@ -809,6 +827,7 @@ mod hashindex_test {
 mod hashset_test {
     use crate::HashSet;
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn compare() {
         let hashset1: HashSet<String> = HashSet::new();
@@ -866,6 +885,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn insert_drop() {
@@ -886,6 +906,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn insert_remove() {
@@ -909,6 +930,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn clear() {
@@ -929,6 +951,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test]
     #[cfg_attr(miri, ignore)]
     async fn clone() {
@@ -952,6 +975,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn integer_key() {
@@ -991,6 +1015,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn reclaim() {
         static INST_CNT: AtomicUsize = AtomicUsize::new(0);
@@ -1042,6 +1067,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn basic() {
         let range = 4096;
@@ -1097,6 +1123,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn compare() {
         let tree1: TreeIndex<String, usize> = TreeIndex::new();
@@ -1119,6 +1146,7 @@ mod treeindex_test {
         assert_ne!(tree1, tree2);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn complex() {
         let range = 4096;
@@ -1216,6 +1244,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn remove() {
         let num_threads = 16;
@@ -1262,6 +1291,7 @@ mod treeindex_test {
         assert_eq!(tree.depth(), 0);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn string_key() {
         let tree1: TreeIndex<String, u32> = TreeIndex::default();
@@ -1293,6 +1323,7 @@ mod treeindex_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn scanner() {
         let data_size = 4096;
@@ -1394,6 +1425,7 @@ mod bag_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn reclaim() {
         static INST_CNT: AtomicUsize = AtomicUsize::new(0);
@@ -1416,6 +1448,7 @@ mod bag_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn mpmc() {
@@ -1472,6 +1505,7 @@ mod queue_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn clone() {
         let queue = Queue::default();
@@ -1492,6 +1526,7 @@ mod queue_test {
         assert!(cloned.pop().is_none());
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn mpmc() {
@@ -1557,6 +1592,7 @@ mod stack_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn clone() {
         let stack = Stack::default();
@@ -1577,6 +1613,7 @@ mod stack_test {
         assert!(cloned.pop().is_none());
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn mpmc() {
@@ -1632,6 +1669,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn deferred() {
         static EXECUTED: AtomicBool = AtomicBool::new(false);
@@ -1645,6 +1683,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn deferred_incremental() {
         static EXECUTED: AtomicUsize = AtomicUsize::new(0);
@@ -1675,6 +1714,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn arc() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1712,6 +1752,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn arc_send() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1725,6 +1766,7 @@ mod ebr_test {
         assert_eq!(arc.0.load(Relaxed), arc.1);
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn arc_arc_send() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1747,6 +1789,7 @@ mod ebr_test {
         assert!(DESTROYED.load(Relaxed));
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn arc_nested() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1762,6 +1805,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn atomic_arc() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1793,6 +1837,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn atomic_arc_send() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1812,6 +1857,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn atomic_arc_creation() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1837,6 +1883,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn atomic_arc_conversion() {
         static DESTROYED: AtomicBool = AtomicBool::new(false);
@@ -1860,6 +1907,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn atomic_arc_parallel() {
@@ -1929,6 +1977,7 @@ mod ebr_test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn atomic_arc_clone() {

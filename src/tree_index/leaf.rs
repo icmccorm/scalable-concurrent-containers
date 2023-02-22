@@ -931,6 +931,7 @@ mod test {
     use proptest::prelude::*;
     use tokio::sync;
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn basic() {
         let leaf: Leaf<String, String> = Leaf::new();
@@ -1008,6 +1009,7 @@ mod test {
         ));
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn calculate_boundary() {
         let leaf: Leaf<usize, usize> = Leaf::new();
@@ -1045,6 +1047,7 @@ mod test {
         );
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn special() {
         let leaf: Leaf<usize, usize> = Leaf::new();
@@ -1072,6 +1075,7 @@ mod test {
     }
 
     proptest! {
+        #[cfg_attr(miri, ignore)]
         #[test]
         fn prop(insert in 0_usize..DIMENSION.num_entries, remove in 0_usize..DIMENSION.num_entries) {
             let leaf: Leaf<usize, usize> = Leaf::new();
@@ -1116,6 +1120,7 @@ mod test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn update() {
@@ -1190,6 +1195,7 @@ mod test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn durability() {

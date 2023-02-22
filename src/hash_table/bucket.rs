@@ -955,6 +955,7 @@ mod test {
 
     use tokio::sync;
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn queue() {

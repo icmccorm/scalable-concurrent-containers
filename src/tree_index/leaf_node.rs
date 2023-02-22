@@ -999,6 +999,7 @@ mod test {
 
     use tokio::sync;
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn basic() {
         let barrier = Barrier::new();
@@ -1056,6 +1057,7 @@ mod test {
         ));
     }
 
+    #[cfg_attr(miri, ignore)]
     #[test]
     fn bulk() {
         let barrier = Barrier::new();
@@ -1097,6 +1099,7 @@ mod test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn parallel() {
@@ -1195,6 +1198,7 @@ mod test {
         }
     }
 
+    #[cfg_attr(miri, ignore)]
     #[tokio::test(flavor = "multi_thread", worker_threads = 16)]
     #[cfg_attr(miri, ignore)]
     async fn durability() {

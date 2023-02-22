@@ -44,10 +44,14 @@ impl<K: Eq, V, const LOCK_FREE: bool> BucketArray<K, V, LOCK_FREE> {
                 !bucket_array_ptr.is_null(),
                 "memory allocation failure: {bucket_array_allocation_size} bytes",
             );
-            let bucket_array_ptr_offset =
-                bucket_array_ptr as usize % bucket_size.next_power_of_two();
+            let bucket_array_ptr_offset = bucket_size.next_power_of_two()
+                - (bucket_array_ptr as usize % bucket_size.next_power_of_two());
             assert!(
                 bucket_array_ptr_offset + bucket_size * array_len <= bucket_array_allocation_size,
+            );
+            assert_eq!(
+                (bucket_array_ptr as usize + bucket_array_ptr_offset) % bucket_size,
+                0
             );
 
             #[allow(clippy::cast_ptr_alignment)]
@@ -254,6 +258,7 @@ mod test {
         assert_eq!(array.num_buckets(), 1024 * 1024);
         let after_alloc = Instant::now();
         println!("allocation took {:?}", after_alloc - start);
+        array.num_cleared_buckets.store(array.array_len, Relaxed);
         drop(array);
         let after_dealloc = Instant::now();
         println!("deallocation took {:?}", after_dealloc - after_alloc);
@@ -267,6 +272,7 @@ mod test {
             assert!(array.num_buckets() <= 2 * (s.max(BUCKET_LEN) / BUCKET_LEN));
             assert!(array.num_entries() >= s.max(BUCKET_LEN));
             assert!(array.num_entries() <= 2 * s.max(BUCKET_LEN));
+            array.num_cleared_buckets.store(array.array_len, Relaxed);
         }
     }
 }
